@@ -14,18 +14,25 @@ app.use(cors());
 const port = process.env.PORT || 8000;
 
 app.use(express.json());
+try {
+  readdirSync("./routes").map(async (file) => {
+    const routePath = `./routes/${file}`;
+    const { default: route } = await import(routePath);
+    const routeName = `/${parse(file).name}`;
+    app.use(routeName, errorHandler, route);
+  });
+} catch (error) {
+  console.warn(error);
+}
 
-readdirSync("./routes").map(async (file) => {
-  const routePath = `./routes/${file}`;
-  const { default: route } = await import(routePath);
-  const routeName = `/${parse(file).name}`;
-  app.use(routeName, errorHandler, route);
-});
+try {
+  app.get("/", (req, res) => {
+    res.send("main page 1.0.0");
+  });
 
-app.get("/", (req, res) => {
-  res.send("main page 1.0.0");
-});
-
-app.listen(port, () => {
-  console.info("app runing at port : " + port);
-});
+  app.listen(port, () => {
+    console.info("app runing at port : " + port);
+  });
+} catch (error) {
+  console.log(error);
+}
