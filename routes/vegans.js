@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { readFile } from "fs/promises";
+//import { readFile } from "fs/promises";
 
 const router = Router();
 // let items = [];
@@ -70,7 +70,7 @@ const items = [
 
 router.get("/", (req, res, next) => {
   try {
-    const { page = 1, limit = 10 } = req.query;
+    const { page = 1, limit = 3 } = req.query;
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
     const paginatedItems = items.slice(startIndex, endIndex);
@@ -105,7 +105,7 @@ router.get("/:id", (req, res, next) => {
 
 router.get("/search", (req, res, next) => {
   try {
-    const { q, page = 1, limit = 10 } = req.query;
+    const { q, page = 1, limit = 3} = req.query;
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
 
