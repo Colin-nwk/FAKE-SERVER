@@ -7,7 +7,7 @@ let items = [];
 
 async function loadItems() {
   try {
-    const data = await readFile("./data/cakesdetails.json", "utf8");
+    const data = await readFile("../data/cakesdetails.json", "utf8");
     items = JSON.parse(data);
     console.log("Data loaded successfully");
   } catch (error) {
