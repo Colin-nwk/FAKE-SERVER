@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
  
 import vegans from "./routes/vegans.js"
-import cocktails from "./routes/cocktails.js"
+//import cocktails from "./routes/cocktails.js"
 
 //import { readdirSync } from "fs";
 //import { parse } from "path";
@@ -27,7 +27,7 @@ app.use(express.json());
 
 
 app.use("/vegans", errorHandler, vegans);
-app.use("/cocktails", errorHandler, cocktails);
+//app.use("/cocktails", errorHandler, cocktails);
 
 
 app.get("/", (req, res) => {
