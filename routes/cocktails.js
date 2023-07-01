@@ -1,17 +1,17 @@
 import { Router } from "express";
-import { readFile } from 'fs/promises';
-//import jsonData from './data/cocktailsdetails.json';
+//import { readFile } from 'fs/promises';
+import jsonData from './data/cocktailsdetails.json' assert {type:'json'};
 
 // Use the jsonData object in your code
 
 const router = Router();
-//let items = jsonData;
+let items = jsonData;
 
-let items = JSON.parse(
-  await readFile(
-    new URL('./data/cocktailsdetails.json', import.meta.url)
-  )
-);
+//let items = JSON.parse(
+  //await readFile(
+//    new URL('./data/cocktailsdetails.json', import.meta.url)
+ //)
+//);
 
 
 router.get("/", (req, res, next) => {
