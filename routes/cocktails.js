@@ -1,20 +1,12 @@
 import { Router } from "express";
+import jsonData from './data/cocktailsdetails.json';
 
-import { readFile } from "fs/promises";
+// Use the jsonData object in your code
 
 const router = Router();
-let items = [];
+let items = jsonData;
 
-async function loadItems() {
-  try {
-    const data = await readFile("./data/cocktailsdetails.json", "utf8");
-    items = JSON.parse(data);
-    console.log("Data loaded successfully");
-  } catch (error) {
-    console.error("Error reading or parsing JSON:", error);
-    throw new Error("Failed to load items");
-  }
-}
+
 
 router.get("/", (req, res, next) => {
   try {
@@ -34,7 +26,7 @@ router.get("/", (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id",  async (req, res, next) => {
   try {
     const itemId = req.params.id;
     const item = await items.find((item) => item.id === itemId);
@@ -74,6 +66,6 @@ router.get("/search", (req, res, next) => {
   }
 });
 
-loadItems();
+
 
 export default router;
