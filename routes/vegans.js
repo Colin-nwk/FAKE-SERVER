@@ -86,22 +86,6 @@ router.get("/", (req, res, next) => {
   }
 });
 
-router.get("/:id", (req, res, next) => {
-  try {
-    const itemId = req.params.id;
-    const item = items.find((item) => item.id === itemId);
-
-    if (item) {
-      return res.json(item);
-    } else {
-      const error = new Error("Item not found");
-      error.status = 404;
-      throw error;
-    }
-  } catch (error) {
-    next(error);
-  }
-});
 
 router.get("/search", (req, res, next) => {
   try {
@@ -125,6 +109,25 @@ router.get("/search", (req, res, next) => {
     next(error);
   }
 });
+
+
+router.get("/:id", (req, res, next) => {
+  try {
+    const itemId = req.params.id;
+    const item = items.find((item) => item.id === itemId);
+
+    if (item) {
+      return res.json(item);
+    } else {
+      const error = new Error("Item not found");
+      error.status = 404;
+      throw error;
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 //loadItems();
 
