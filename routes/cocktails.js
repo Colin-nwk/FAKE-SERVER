@@ -9,9 +9,9 @@ async function loadItems() {
   try {
     const data = await readFile("./data/cocktailsdetails.json", "utf8");
     items = JSON.parse(data);
-    // console.log("Data loaded successfully");
+    console.log("Data loaded successfully");
   } catch (error) {
-    // console.error("Error reading or parsing JSON:", error);
+    console.error("Error reading or parsing JSON:", error);
     throw new Error("Failed to load items");
   }
 }
