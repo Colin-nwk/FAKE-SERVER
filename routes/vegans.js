@@ -126,6 +126,6 @@ router.get("/search", (req, res, next) => {
   }
 });
 
-loadItems();
+//loadItems();
 
 export default router;
